@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Git files
+.git/
+.gitignore
+
+# GitHub Actions
+.github/
+
+# Environment files — never copy secrets into an image
+.env
+
+# Kubernetes manifests — not needed inside the container
+k8s/
+
+# Documentation
+*.md
+
+# OS files
+.DS_Store
+Thumbs.db

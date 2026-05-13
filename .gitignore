@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment files
+.env
+
+# AWS credentials — never commit these
+.aws/
+
+# Kubernetes sensitive files
+*.kubeconfig
+
+# Log files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
