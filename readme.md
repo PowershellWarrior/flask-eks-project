@@ -11,6 +11,14 @@
 > A containerized Python Flask application deployed to AWS EKS using Kubernetes —
 > provisioned with eksctl, stored in Amazon ECR, and exposed via an AWS Load Balancer.
 
+
+
+
+
+
+
+<img width="1104" height="330" alt="2026-05-14" src="https://github.com/user-attachments/assets/a2e417a8-99a1-4b56-b945-6b4869a53adf" />
+
 ---
 
 ## Overview
