@@ -1,0 +1,31 @@
+##############################################################################
+# k8s/service.yaml
+# WHY THIS FILE EXISTS:
+#   A Service exposes your pods to network traffic. Without a Service
+#   your pods are running but completely unreachable. The LoadBalancer
+#   type automatically provisions an AWS Elastic Load Balancer that
+#   gives your app a public URL accessible from anywhere.
+##############################################################################
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+
+spec:
+  # LoadBalancer type automatically creates an AWS ELB
+  # WHY: This is what gives your app a public URL.
+  #      AWS provisions the load balancer automatically
+  #      when this manifest is applied to EKS.
+  type: LoadBalancer
+
+  # Routes traffic to pods with this label
+  selector:
+    app: flask-app
+
+  ports:
+    # Port 80 — standard HTTP port users visit in browser
+  - port: 80
+    # Routes to port 5000 inside the container
+    targetPort: 5000
+    protocol: TCP

@@ -1,0 +1,56 @@
+##############################################################################
+# k8s/deployment.yaml
+# WHY THIS FILE EXISTS:
+#   A Deployment tells Kubernetes how to run your application.
+#   It defines which container image to use, how many copies
+#   (replicas) to run, and how to identify the pods it manages.
+#   Kubernetes uses this to maintain your desired state — if a
+#   pod crashes, Kubernetes automatically replaces it.
+##############################################################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+  labels:
+    app: flask-app
+
+spec:
+  # Run 2 identical copies of the container simultaneously
+  # WHY: If one pod crashes the other continues serving traffic
+  #      while Kubernetes automatically restarts the failed one
+  replicas: 2
+
+  # Tells Kubernetes which pods this Deployment manages
+  selector:
+    matchLabels:
+      app: flask-app
+
+  # Template for each pod Kubernetes creates
+  template:
+    metadata:
+      labels:
+        app: flask-app
+
+    spec:
+      containers:
+      - name: flask-app
+
+        # Pull image from your private ECR repository
+        # WHY: ECR is private — only authorized AWS accounts
+        #      can pull this image
+        image: 198919428293.dkr.ecr.us-east-1.amazonaws.com/flask-eks-app:latest
+
+        # The port your Flask app listens on inside the container
+        ports:
+        - containerPort: 5000
+
+        # Resource limits — prevents one pod from consuming
+        # all available node resources
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
